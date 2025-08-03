@@ -1,43 +1,28 @@
 const express = require('express');
 const cors = require('cors');
-const { Pool } = require('pg'); // подключаем pg
-
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 3001;
 
-// подключение к PostgreSQL
-const pool = new Pool({
-    user: 'muratnasyrov01icloud.com',      // замените на свой macOS username или postgres
-    host: 'localhost',
-    database: 'coding_conf',
-    password: '',          // если пароль пустой — оставьте так
-    port: 5432,
-});
-
-// разрешаем CORS для фронтенда
 app.use(cors());
 app.use(express.json());
 
-app.post('/register', async (req, res) => {
-    const { name, email, password } = req.body;
-    console.log('Получено:', req.body);
-
-    try {
-        const result = await pool.query(
-            'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *',
-            [name, email, password]
-        );
-        res.json({ status: 'ok', saved: result.rows[0] });
-    } catch (err) {
-        console.error('Ошибка при сохранении в БД:', err);
-        res.status(500).json({ status: 'error', error: err.message });
-    }
-});
+let submissions = [];
 
 app.get('/', (req, res) => {
-    res.send('Сервер работает');
+  res.json(submissions);
 });
 
+app.post('/contact', (req, res) => {
+  const { name, lastname, email, message } = req.body;
+  submissions.push({ name, lastname, email, message });
+  console.log('📦 Получены данные:', req.body);
+
+  // Вернуть одно сообщение
+  res.status(200).json({ message: 'Thank you! The data has been received by the server.' });
+});
+
+
+
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`✅ Сервер работает на http://localhost:${PORT}`);
 });
