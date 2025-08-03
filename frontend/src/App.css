@@ -1,0 +1,77 @@
+:root{
+ --green-200-lighter: hsl(148, 38%, 91%);
+  --green-600-medium: hsl(169, 82%, 27%);
+  --red: hsl(0, 66%, 54%);
+
+--White: hsl(0, 0%, 100%);
+--Grey-500-medium: hsl(186, 15%, 59%);
+--Grey-900-darker: hsl(187, 24%, 22%);
+}
+
+.App {
+  text-align: center;
+  justify-content: center;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+body {
+  font-family: 'Karla', sans-serif;
+  background-color: var(--green-200-lighter);
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-form {
+  background-color: var(--White);
+  font-family: 'Karla', sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+   margin-top: 100px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 12px;
+  background-color: hsl(169, 82%, 27%);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 10px;
+}
+
+button:hover {
+  background-color: hsl(148, 38%, 91%);
+  color: black;
+}
+
+.text-message {
+  font-size: 16px;
+  height: 100px;
+}
